@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de estudio para la oposición de policía</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="elemento">
+
+    <div class="wrapper">
+        <input type="checkbox" id="toogle" class="hidden-trigger">
+        <label for="toogle" class="circle">
+            <div class="plus">
+                +
+            </div>
+        </label>
+        
+        <div class="subs">
+          <button class="sub-circle">
+            <a href="../inicio.html">
+                <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger">
+                <video src="../iniciomp4.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="../temas.html">
+                <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger">
+                <video src="../temas.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="../fisicas.html">
+                <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
+                <video src="../fisicas_1.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="../psico.html">
+                <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
+                <video src="../psicotecnico.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="../ingles.html">
+                <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger">
+                <video src="../ingles.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+        </div>
+    </div>
+
+   <div class="tabla-envoltura">
+        <h2>CARRERA</h2>
+        <table id="tablaTiemposCarrera">
+            <tr>
+                <th>Fecha</th>
+                <th>Tiempo</th>
+            </tr>
+        </table>
+        <br>
+        <div class="input-group">
+            <input type="text" id="tiempoCarrera" placeholder="Introduce el tiempo">
+            <button onclick="añadirTiempo('Carrera')" class="cronometro">
+                    <img src="../Sin título-1.png" width="70" height="75">
+            </button>
+            <button onclick="borrarUltimoTiempo('Carrera')" class="borrar">
+                <span class="button__text">BORRAR</span>
+                <span class="button__icon">
+                    <svg class="svg" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
+                        <title></title>
+                        <path d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                        <line style="stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" x1="80" x2="432" y1="112" y2="112"></line>
+                        <path d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                        <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="256" x2="256" y1="176" y2="400"></line>
+                        <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="184" x2="192" y1="176" y2="400"></line>
+                        <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="328" x2="320" y1="176" y2="400"></line>
+                    </svg>
+                </span>
+            </button>
+        </div>
+
+        <br>
+        <p id="mediaCarrera"></p>
+    </div>
+
+    <script>
+        var tiempos = {
+            'Carrera': [],
+        };
+        
+        window.onload = function() {
+            calcularMedia('Carrera');
+            document.getElementById('tiempoCarrera').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') { 
+                    e.preventDefault();
+                    añadirTiempo('Carrera');
+                }
+            });
+        }
+        
+        function añadirTiempo(tipo) {
+            var tiempo = document.getElementById('tiempo' + tipo).value;
+            if (tiempo) {
+                var fecha = new Date();
+                var fila = document.createElement('tr');
+                fila.innerHTML = '<td>' + fecha.toLocaleDateString() + '</td><td>' + tiempo + '</td>';
+                document.getElementById('tablaTiempos' + tipo).appendChild(fila);
+                var partes = tiempo.split(':');
+                var milisegundos = (parseInt(partes[0]) * 60 * 60 * 1000) + (parseInt(partes[1]) * 60 * 1000) + (parseInt(partes[2]) * 1000);
+                tiempos[tipo].push(milisegundos);
+                calcularMedia(tipo);
+            }
+        }
+
+        function calcularMedia(tipo) {
+            var suma = tiempos[tipo].reduce(function(a, b) { return a + b; }, 0);
+            var media = tiempos[tipo].length ? suma / tiempos[tipo].length : 0;
+            var horas = Math.floor(media / (60 * 60 * 1000));
+            media -= horas * 60 * 60 * 1000;
+            var minutos = Math.floor(media / (60 * 1000));
+            media -= minutos * 60 * 1000;
+            var segundos = Math.floor(media / 1000);
+            media -= segundos * 1000;
+            var milisegundos = media;
+            document.getElementById('media' + tipo).innerText = 'Media de los tiempos: ' + horas + ':' + minutos + ':' + segundos + '.' + milisegundos;
+        }
+        
+        function borrarUltimoTiempo(tipo) {
+            tiempos[tipo].pop();
+            var tabla = document.getElementById('tablaTiempos' + tipo);
+            if (tabla.rows.length > 1) { // Comprueba si hay más de una fila
+                tabla.deleteRow(-1); // Elimina la última fila
+            }
+            calcularMedia(tipo);
+        }
+        
+    </script>   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelector('.hidden-trigger').addEventListener('change', function() {
+            if(this.checked) {
+            document.body.classList.add('blur');
+            } else {
+            document.body.classList.remove('blur');
+            }
+        });
+        });
+    </script>
+</body>
+</html>

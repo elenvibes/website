@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de estudio para la oposición de policía</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="elemento">
+    
+    <header>
+
+        <div class="wrapper">
+            <input type="checkbox" id="toogle" class="hidden-trigger">
+            <label for="toogle" class="circle">
+                <div class="plus">
+                    +
+                </div>
+            </label>
+            
+            <div class="subs">
+              <button class="sub-circle">
+                <a href="../inicio.html">
+                    <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger">
+                    <video src="../iniciomp4.mp4" muted loop autoplay></video>
+                </a>
+              </button>
+              <button class="sub-circle">
+                <a href="../temas.html">
+                    <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger">
+                    <video src="../temas.mp4" muted loop autoplay></video>
+                </a>
+              </button>
+              <button class="sub-circle">
+                <a href="../fisicas.html">
+                    <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
+                    <video src="../fisicas_1.mp4" muted loop autoplay></video>
+                </a>
+              </button>
+              <button class="sub-circle">
+                <a href="../psico.html">
+                    <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
+                    <video src="../psicotecnico.mp4" muted loop autoplay></video>
+                </a>
+              </button>
+              <button class="sub-circle">
+                <a href="../ingles.html">
+                    <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger">
+                    <video src="../ingles.mp4" muted loop autoplay></video>
+                </a>
+              </button>
+            </div>
+        </div>
+        
+        <h1>TEMA 1</h1>
+    </header>
+    
+    <h2>El Derecho: Concepto y acepciones. Las normas jurídicas positivas: Concepto, estructura, clases 
+        y caracteres. El principio de jerarquía normativa. La persona en sentido jurídico: Concepto 
+        y clases; su nacimiento y extinción; capacidad jurídica y capacidad de obrar. Adquisición, 
+        conservación y pérdida de la nacionalidad española. El domicilio. La vecindad civil.
+    </h2>
+
+    <div class="contenedor-padre">
+        <div class="contenedor">
+            <div class="txt-conta">
+                <p1>Nº VECES LEÍDO</p1>
+                <p class="contador">0</p>
+            </div>
+            <div class="botones">
+                <button onclick="incrementar(0)">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">+</span>
+                </button>
+                <button onclick="decrementar(0)">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">-</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="contenedor">
+            <div class="txt-conta">
+                <p1>Nº VECES ESTUDIADO</p1>
+                <p class="contador">0</p>
+            </div>
+            <div class="botones">
+                <button onclick="incrementar(1)">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">+</span>
+                </button>
+                <button onclick="decrementar(1)">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">-</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="contenedor">
+            <div class="txt-conta">
+                <p1>Nº VECES REPASADO</p1>
+                <p class="contador">0</p>
+            </div>
+            <div class="botones">
+                <button onclick="incrementar(2)">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">+</span>
+                </button>
+                <button onclick="decrementar(2)">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front">-</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="contenedor">
+            <div class="txt-conta">
+                <p1>Nº TEST REALIZADO</p1>
+                <p class="contador">0</p>
+            </div>
+            <div class="botones">
+                <button onclick="incrementar(3)">
+                    <span class="shadow"></span>
+                    <span class="edge"></span>
+                    <span class="front">+</span>
+                </button>
+                <button onclick="decrementar(3)">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front">-</span>
+                </button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>
+        var contadores = [0, 0, 0, 0];
+        function incrementar(index) {
+            contadores[index] += 1;
+            document.getElementsByClassName("contador")[index].innerHTML = contadores[index];
+        }
+    
+        function decrementar(index) {
+            if (contadores[index] > 0) {
+                contadores[index] -= 1;
+                document.getElementsByClassName("contador")[index].innerHTML = contadores[index];
+            }
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelector('.hidden-trigger').addEventListener('change', function() {
+            if(this.checked) {
+            document.body.classList.add('blur');
+            } else {
+            document.body.classList.remove('blur');
+            }
+        });
+        });
+    </script>
+    
+
+</body>
+</html>

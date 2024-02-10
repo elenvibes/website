@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de estudio para la oposición de policía</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="elemento">
+    
+    <header>
+        <h1>INICIO</h1>
+    </header>
+
+    <div class="wrapper">
+        <input type="checkbox" id="toogle" class="hidden-trigger">
+        <label for="toogle" class="circle">
+            <div class="plus">
+                +
+            </div>
+        </label>
+        
+        <div class="subs">
+          <button class="sub-circle">
+            <a href="inicio.html">
+                <input value="1" name="sub-circle" type="radio" id="sub1" class="hidden-sub-trigger">
+                <video src="iniciomp4.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="temas.html">
+                <input value="1" name="sub-circle" type="radio" id="sub2" class="hidden-sub-trigger">
+                <video src="temas.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="fisicas.html">
+                <input value="1" name="sub-circle" type="radio" id="sub3" class="hidden-sub-trigger">
+                <video src="fisicas_1.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="psico.html">
+                <input value="1" name="sub-circle" type="radio" id="sub4" class="hidden-sub-trigger">
+                <video src="psicotecnico.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+          <button class="sub-circle">
+            <a href="ingles.html">
+                <input value="1" name="sub-circle" type="radio" id="sub5" class="hidden-sub-trigger">
+                <video src="ingles.mp4" muted loop autoplay></video>
+            </a>
+          </button>
+        </div>
+    </div>
+    
+      
+      
+
+       <div class="navbar">
+            <ul>
+                <li class="nav-item" data-icon="libros.mp4">
+                    <a href="temas.html">TEMAS</a>
+                    <video class="icon-video" src="temas.mp4" muted loop autoplay></video>
+                </li>
+                <li class="nav-item" data-icon="lagartijas.mp4">
+                    <a href="fisicas.html">FÍSICAS</a>
+                    <video class="icon-video" src="fisicas_1.mp4" muted loop autoplay></video>
+                </li>
+                <li class="nav-item" data-icon="traducir.mp4">
+                    <a href="ingles.html">INGLÉS</a>
+                    <video class="icon-video" src="ingles.mp4" muted loop autoplay></video>
+                </li>
+                <li class="nav-item" data-icon="laberinto.mp4">
+                    <a href="psico.html">PSCIOTÉCNICO</a>
+                    <video class="icon-video" src="psicotecnico.mp4" muted loop autoplay></video>
+                </li>  
+            </ul>
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelector('.hidden-trigger').addEventListener('change', function() {
+        if(this.checked) {
+          document.body.classList.add('blur');
+        } else {
+          document.body.classList.remove('blur');
+        }
+      });
+    });
+  </script>
+  
+
+</body>
+</html>
